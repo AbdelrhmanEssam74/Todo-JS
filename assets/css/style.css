@@ -61,12 +61,34 @@ body {
 .tasks .task.done {
     opacity: 0.5;
 }
+.task .span-container{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
 .tasks .task span {
     font-weight: bold;
-    font-size: 10px;
-    background-color: red;
+    font-size: 15px;
     color: white;
     padding: 2px 6px;
     border-radius: 4px;
     cursor: pointer;
+}
+.task span.delete {
+    background-color: #f44336;
+}
+.task span.delete:hover {
+    background-color: #d32f2f;
+}
+.task span.done {
+    background-color: #4caf50;
+}
+.task span.done:hover {
+    background-color: #388e3c;
+}
+.task span.edit {
+    background-color: #2196F3;
+}
+.task span.edit:hover {
+    background-color: #1976D2;
 }
