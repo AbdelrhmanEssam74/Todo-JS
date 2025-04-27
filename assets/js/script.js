@@ -5,7 +5,7 @@ const addBtn = document.querySelector(".add")
 const tasksContainer = document.querySelector(".tasks")
 
 // arr to store tasks
-let tasksArr = []
+let tasksArr = getTasks()
 addBtn.addEventListener("click", () => {
     if (input.value !== "") {
         let TaskValue = input.value
@@ -34,6 +34,7 @@ function addTaskElement(Array) {
     })
 
 }
+
 // create task element
 function createTaskElement(task) {
     // create task element
@@ -72,4 +73,13 @@ function createTaskElement(task) {
 // store tasks in local storage
 function storeTasks() {
     localStorage.setItem("tasks", JSON.stringify(tasksArr))
+}
+
+// get tasks from local storage
+function getTasks() {
+    let tasks = localStorage.getItem("tasks")
+    if (tasks)
+        return JSON.parse(tasks)
+    else
+        return []
 }
