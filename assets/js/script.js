@@ -78,8 +78,9 @@ function storeTasks() {
 // get tasks from local storage
 function getTasks() {
     let tasks = localStorage.getItem("tasks")
-    if (tasks)
+    if (tasks) {
+        addTaskElement(JSON.parse(tasks))
         return JSON.parse(tasks)
-    else
+    } else
         return []
 }
