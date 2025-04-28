@@ -46,10 +46,8 @@ function createTaskElement(task) {
     const spanContainer = document.createElement("div")
     spanContainer.className = "span-container"
     const deleSpan = document.createElement("span")
-    let deleteIcon = document.createElement("i")
     deleSpan.className = "delete"
-    deleteIcon.className = "fa-solid fa-trash-can"
-    deleSpan.appendChild(deleteIcon)
+    deleSpan.appendChild(document.createTextNode("delete"))
     //create a done button
     const doneSpan = document.createElement("span")
     doneSpan.className = "done"
@@ -83,4 +81,29 @@ function getTasks() {
         return JSON.parse(tasks)
     } else
         return []
+}
+
+// delete
+// 1 - remove from page
+// 2 - remove from local storage
+// 3 - update a task array
+// get the task id
+let delButtons = document.querySelectorAll(".delete")
+if (delButtons){
+    delButtons.forEach((deleteBtn) => {
+        deleteBtn.addEventListener("click", (e) => {
+            // get the task id
+            let taskId = e.target.parentElement.parentElement.getAttribute("data-id")
+            deleteTask(taskId)
+        })
+    })
+}
+function deleteTask(taskId)
+{
+    // remove from page
+    let taskEle = document.querySelector(`[data-id="${taskId}"]`)
+    taskEle.remove()
+    // remove from the task array
+    tasksArr = tasksArr.filter((task)=> task.id != taskId)
+    storeTasks()
 }
