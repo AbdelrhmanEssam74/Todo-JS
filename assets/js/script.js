@@ -51,15 +51,11 @@ function createTaskElement(task) {
     //create a done button
     const doneSpan = document.createElement("span")
     doneSpan.className = "done"
-    let doneIcon = document.createElement("i")
-    doneIcon.className = "fa-solid fa-check"
-    doneSpan.appendChild(doneIcon)
+    doneSpan.appendChild(document.createTextNode("done"))
     // create edit button
     const editSpan = document.createElement("span")
     editSpan.className = "edit"
-    let editIcon = document.createElement("i")
-    editIcon.className = "fa-solid fa-pen-to-square"
-    editSpan.appendChild(editIcon)
+    editSpan.appendChild(document.createTextNode("edit"))
     // append children
     spanContainer.appendChild(doneSpan)
     spanContainer.appendChild(editSpan)
@@ -87,17 +83,13 @@ function getTasks() {
 // 1 - remove from page
 // 2 - remove from local storage
 // 3 - update a task array
-// get the task id
-let delButtons = document.querySelectorAll(".delete")
-if (delButtons){
-    delButtons.forEach((deleteBtn) => {
-        deleteBtn.addEventListener("click", (e) => {
-            // get the task id
-            let taskId = e.target.parentElement.parentElement.getAttribute("data-id")
-            deleteTask(taskId)
-        })
-    })
-}
+tasksContainer.addEventListener("click", (e)=>{
+    if(e.target.classList.contains("delete")){
+        // get the task id
+        let taskId = e.target.parentElement.parentElement.getAttribute("data-id")
+        deleteTask(taskId)
+    }
+})
 function deleteTask(taskId)
 {
     // remove from page
