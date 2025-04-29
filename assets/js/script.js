@@ -89,6 +89,24 @@ tasksContainer.addEventListener("click", (e)=>{
         let taskId = e.target.parentElement.parentElement.getAttribute("data-id")
         deleteTask(taskId)
     }
+    if(e.target.classList.contains("edit")){
+        let spanContainer = e.target.parentElement
+        let taskValue = spanContainer.parentElement.textContent.replace("doneeditdelete", "")
+        let taskId = spanContainer.parentElement.getAttribute("data-id")
+        let textInput = document.createElement("input")
+        textInput.type = "text"
+        textInput.value = taskValue
+        spanContainer.parentElement.replaceWith(textInput)
+        textInput.focus()
+        textInput.addEventListener("blur", (e)=>{
+            let newTaskValue = e.target.value
+            let taskIndex = tasksArr.findIndex((task)=> task.id == taskId)
+            tasksArr[taskIndex].text = newTaskValue
+            storeTasks()
+            addTaskElement(tasksArr)
+        })
+
+    }
 })
 function deleteTask(taskId)
 {
