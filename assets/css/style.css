@@ -92,3 +92,16 @@ body {
 .task span.edit:hover {
     background-color: #1976D2;
 }
+input[type="text"] {
+    background-color: white;
+    width: 70%;
+    padding: 10px;
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.3s;
+    border: 1px solid #ccc;
+    cursor: text;
+    margin-bottom: 10px;
+}
